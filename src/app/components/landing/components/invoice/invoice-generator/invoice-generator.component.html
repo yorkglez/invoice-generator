@@ -1,16 +1,33 @@
 <div class="w-full flex justify-center px-40 py-20 bg-lightGray">
-  <!--  template-->
-  <div class="relative">
+  <!--  settings buttons -->
+  <div class="relative w-auto h-72 flex flex-col items-center gap-7 mr-8">
     <button
       (click)="showConfig = !showConfig"
-      class="w-23 h-23 bg-red-500 rounded-full mr-8 flex items-center justify-center">
-      <img class="w-14" src="https://cdn2.hubspot.net/hubfs/53/invoice%20generator/toolset.svg" alt="">
+      class="w-20 h-20 bg-red-500 rounded-full  flex items-center justify-center">
+      <img class="w-10" src="https://cdn2.hubspot.net/hubfs/53/invoice%20generator/toolset.svg" alt="">
     </button>
-    <button (click)="resetForm()" class="btn-clear w-12 h-12 bg-red-500 rounded-full "></button>
-    <button class="btn-clear w-12 h-12 bg-red-500 rounded-full "></button>
+    <div class="flex gap-5">
+      <button (click)="resetForm()"
+              class="btn-clear w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+        <img class="w-5" src="https://cdn2.hubspot.net/hubfs/53/invoice%20generator/clear.svg" alt="">
+      </button>
+
+      <button (click)="toggleColorPicker()"
+              class="btn-clear w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+        <img class="w-5" src="https://cdn2.hubspot.net/hubfs/53/invoice%20generator/paintbrush.svg" alt="">
+      </button>
+    </div>
+
+    <!--    color picker -->
+    <div *ngIf="showColorPicker" class="absolute left-0 bottom-0 z-40">
+      <color-twitter width="230" [colors]="colors" [color]="colorSelected" triangle="hide"
+                     (onChangeComplete)="changeComplete($event)">
+      </color-twitter>
+    </div>
   </div>
 
-  <div style="min-height: 800px" class="w-2/4 px-12 py-6 bg-white shadow-2xl">
+  <!--  template-->
+  <div style="min-height: 800px" class="relative w-2/4 px-12 py-6 bg-white shadow-2xl z-20">
     <!--    top sided -->
     <div class="">
       <!--      form left -->
@@ -159,9 +176,10 @@
 
     <!--    Table side -->
     <div class="w-full mt-20" (mouseleave)="hiddAddmoreRows()">
-      <table class="table-auto w-full table-items" (click)="showAddMoreRows = !showAddMoreRows">
+      <table class="table-fixed w-full table-items" (click)="showAddMoreRows = !showAddMoreRows">
         <thead>
-        <tr class="bg-darkBlue text-white text-left"
+        <tr [style.background]="colorSelected"
+            class="text-white text-left"
             (mouseenter)="showAddMoreRowsButton()">
           <th class="font-light">ID</th>
           <th class="">Description</th>
@@ -171,8 +189,8 @@
         </thead>
         <tbody>
         <tr *ngFor="let item of itemsList; let index = index"
-            (mouseover)="showRemoveRow()"
-            (mouseleave)="showRemoveRowButton = false"
+            (mouseover)="showRemoveRow(index)"
+            (mouseleave)="hoveredRowIndex = -1"
             class="bg-white even:bg-gray-100 border-b border-black last:border-none">
           <td>
             <input type="number" placeholder="" class="w-full" [(ngModel)]="item.id">
@@ -186,22 +204,25 @@
           <td class="relative z-99 flex">
             <input type="number" placeholder="$0.00" class="w-full" [(ngModel)]="item.price">
             <button (click)="removeRow(index)"
-                    [ngClass]="{'show': showRemoveRowButton}"
+                    [ngClass]="{'show': hoveredRowIndex === index}"
                     class="btn-remove absolute h-6 w-6 bg-red-500 rounded-full text-white">X
             </button>
           </td>
         </tr>
         </tbody>
       </table>
+
       <button [ngClass]="{'show': showAddMoreRows}"
               class="w-full h-10 btn-danger btn-add mb-10" (click)="addMore()">+Add More
       </button>
     </div>
     <div class="w-full flex gap-10">
-      <div class="w-1/2 rounded-lg border border-black flex flex-col justify-center items-center p-4">
+      <div [style.border-color]="colorSelected"
+           class="w-1/2 rounded-lg border flex flex-col justify-center items-center p-4">
         <span class="font-light">Notes:</span>
         <textarea class="w-full placeholder:font-light placeholder:text-center text-center"
-                  rows="2" placeholder="any additional comments"></textarea>
+                  rows="2" placeholder="any additional comments">
+        </textarea>
       </div>
 
       <div class="w-1/2 flex flex-col gap-2">
@@ -224,7 +245,7 @@
                       [(ngModel)]="discount"></div>
           <div class="absolute -right-5">%</div>
         </div>
-        <div class="border-b border-black w-full my-1"></div>
+        <div [style.border-color]="colorSelected" class="border-b w-full my-1"></div>
         <div class="flex justify-between">
           Total:
           <div>

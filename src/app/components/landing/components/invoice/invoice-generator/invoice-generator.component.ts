@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
-import {File} from 'node:buffer';
+import {ColorTwitterModule} from 'ngx-color/twitter';
 
 @Component({
   selector: 'invoice-generator',
@@ -11,15 +11,25 @@ import {File} from 'node:buffer';
     NgForOf,
     FormsModule,
     NgIf,
-    NgClass
+    NgClass,
+    ColorTwitterModule
   ],
   templateUrl: './invoice-generator.component.html',
   styleUrl: './invoice-generator.component.scss'
 })
 export class InvoiceGeneratorComponent {
-  public infoForm: FormGroup;
-  public errorsList: any;
-  public itemsList = [
+  protected colorSelected = '#425B76';
+  protected infoForm: FormGroup;
+  protected errorsList: any;
+  protected colors = [
+    '#FCB900',
+    '#7BDCB5',
+    '#00D084',
+    '#8ED1FC',
+    '#0693E3',
+    '#9900EF',
+  ];
+  protected itemsList = [
     {
       id: '01',
       description: '',
@@ -27,13 +37,21 @@ export class InvoiceGeneratorComponent {
       price: '$0.00'
     }
   ];
-  public showAddMoreRows: boolean = false;
-  public file: any;
-  public showRemoveRowButton: boolean = false;
-  public tax: number = 0;
-  public discount: number = 0;
-  selectedImage: string | ArrayBuffer | null = null;
+  protected file: any;
+
+  protected tax: number = 0;
+  protected discount: number = 0;
   private subtotal: number = 0;
+  protected hoveredRowIndex: number = -1;
+
+  protected selectedImage: string | ArrayBuffer | null = null;
+
+  protected showAddMoreRows: boolean = false;
+  protected showRemoveRowButton: boolean = false;
+  protected showColorPicker: boolean = false;
+  protected showConfig: boolean = false;
+  protected readonly onmouseleave = onmouseleave;
+
 
   constructor(private fb: FormBuilder) {
     this.infoForm = this.fb.group({
@@ -70,22 +88,38 @@ export class InvoiceGeneratorComponent {
     });
   }
 
+  /**
+   * Handle the file drop event
+   * @param event
+   */
   onFileDropped(event: DragEvent) {
     event.preventDefault();
     const files = event.dataTransfer?.files;
     this.renderImage(files)
   }
 
+  /**
+   * Handle the drag over event
+   * @param event
+   */
   public onDragOver(event: DragEvent) {
     event.preventDefault();
   }
 
+  /**
+   * Handle the file selected event
+   * @param event
+   */
   public onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     const files = input.files;
     this.renderImage(files)
   }
 
+  /**
+   * Render the image selected
+   * @param files
+   */
   public renderImage(files: any) {
     if (files) {
       const file = files[0]
@@ -99,6 +133,9 @@ export class InvoiceGeneratorComponent {
     }
   }
 
+  /**
+   * Add more rows to the invoice
+   */
   addMore() {
     const sizeList = this.itemsList.length + 1;
     const index = sizeList < 10 ? '0' + sizeList : sizeList;
@@ -111,25 +148,36 @@ export class InvoiceGeneratorComponent {
     this.showAddMoreRows = false;
   }
 
+  /**
+   * Remove a row from the invoice
+   * @param index
+   */
   public removeRow(index: number) {
     this.itemsList.splice(index, 1);
   }
 
-  showRemoveRow() {
-    this.showRemoveRowButton = true;
+  /**
+   * Show the remove row button
+   */
+  showRemoveRow(index: number) {
+    this.hoveredRowIndex = index;
+    // this.showRemoveRowButton = true;
     this.showAddMoreRowsButton();
   }
 
+  /**
+   * Hide the remove row button
+   */
   showAddMoreRowsButton() {
     this.showAddMoreRows = true;
   }
 
+  /**
+   * Hide the remove row button
+   */
   hiddAddmoreRows() {
     this.showAddMoreRows = false;
   }
-
-  protected readonly onmouseleave = onmouseleave;
-
 
   /*
     * Get the subtotal of the invoice
@@ -165,10 +213,6 @@ export class InvoiceGeneratorComponent {
     return errors;
   }
 
-
-  // // Método para obtener los errores de un control
-  showConfig: boolean = false;
-
   getControlErrors(controlName: string): string[] {
     const control = this.infoForm.get(controlName);
     if (!control) return [];
@@ -195,6 +239,9 @@ export class InvoiceGeneratorComponent {
   }
 
 
+  /**
+   * Reset the form to its initial state
+   */
   public resetForm() {
     this.infoForm.reset();
     this.itemsList = [
@@ -205,5 +252,23 @@ export class InvoiceGeneratorComponent {
         price: '$0.00'
       }
     ];
+    this.selectedImage = null;
+    this.file = null;
+  }
+
+  /**
+   * Change the color of the invoice
+   * @param $event
+   * @protected
+   */
+  protected changeComplete($event: any) {
+    this.colorSelected = $event.color.hex;
+  }
+
+  /**
+   * Toggle the color picker
+   */
+  protected toggleColorPicker() {
+    this.showColorPicker = !this.showColorPicker;
   }
 }
