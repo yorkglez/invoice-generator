@@ -20,15 +20,18 @@ export class InvoiceComponent {
   sectionInfo = {
     textColor: '#FFF',
     width: '60%',
+    height: 'auto',
+    padding: 'py-24',
     titleContent: {
       title: 'Invoice Generator',
       size: '48px',
+      align: 'center',
     },
+    logo: 'logo-invoice.svg',
+    logoPosition: 'left',
     descriptionContent: {
       description: 'Tired of manually creating invoices? Say hello to HubSpot\'s free online Invoice Generator! Make' +
         ' professional invoices that showcase your brand and impress your customers. Then, manage your invoice with the HubSpot invoice integration. ',
-      icon: 'invoice',
-      iconPosition: 'left',
       image: 'invoice',
       imagePosition: 'right',
     }
