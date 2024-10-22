@@ -1,12 +1,12 @@
-<div class="w-full flex justify-center px-40 py-20 bg-lightGray">
+<div class="relative w-full flex justify-center px-40 py-20 bg-lightGray">
   <!--  settings buttons -->
-  <div class="relative w-auto h-72 flex flex-col items-center gap-7 mr-8">
+  <div class="relative w-32 h-72 flex flex-col items-center gap-7 mr-8">
     <button
       (click)="showConfig = !showConfig"
       class="w-20 h-20 bg-red-500 rounded-full  flex items-center justify-center">
       <img class="w-10" src="https://cdn2.hubspot.net/hubfs/53/invoice%20generator/toolset.svg" alt="">
     </button>
-    <div class="flex gap-5">
+    <div class="flex gap-5" *ngIf="showConfig">
       <button (click)="resetForm()"
               class="btn-clear w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
         <img class="w-5" src="https://cdn2.hubspot.net/hubfs/53/invoice%20generator/clear.svg" alt="">
