@@ -1,0 +1,8 @@
+<div
+  class="w-full border border-gray-200 rounded-lg expansion-panel h-auto pl-6
+                flex flex-col justify-center transition mb-4">
+  <button class="collapse-button text-left py-6 cursor-pointer text-lg font-bold" (click)="togglePanel()">{{ content?.title }}</button>
+  <div class="collapse-content font-light leading-8" [ngClass]="{'show': panelOpenState }"
+       [innerHTML]="safeHtml">
+  </div>
+</div>
