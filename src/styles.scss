@@ -10,5 +10,29 @@
   font-style: normal;
 }
 
-html, body { height: 100%; }
-body { margin: 0; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.btn {
+  border-radius: 8px;
+  line-height: 28px;
+  font-weight: 500;
+  align-items: center;
+  padding: 12px 24px;
+  text-align: center;
+}
+
+.btn-primary {
+  background: #e04826;
+  color: #fff;
+}
+.btn-secondary{
+  background: #fff;
+  color: #e04826;
+  border: 2px solid #e04826;
+}
