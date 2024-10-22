@@ -1,0 +1,243 @@
+<div class="w-full flex justify-center px-40 py-20 bg-lightGray">
+  <!--  template-->
+  <div class="relative">
+    <button
+      (click)="showConfig = !showConfig"
+      class="w-23 h-23 bg-red-500 rounded-full mr-8 flex items-center justify-center">
+      <img class="w-14" src="https://cdn2.hubspot.net/hubfs/53/invoice%20generator/toolset.svg" alt="">
+    </button>
+    <button (click)="resetForm()" class="btn-clear w-12 h-12 bg-red-500 rounded-full "></button>
+    <button class="btn-clear w-12 h-12 bg-red-500 rounded-full "></button>
+  </div>
+
+  <div style="min-height: 800px" class="w-2/4 px-12 py-6 bg-white shadow-2xl">
+    <!--    top sided -->
+    <div class="">
+      <!--      form left -->
+      <form [formGroup]="infoForm" class="flex justify-between" novalidate>
+        <div class="left-form">
+          <h1 class="text-3xl font-bold mb-4">Invoice</h1>
+          <!--          Company form -->
+          <div>
+            <div>
+              <input class="placeholder-bold text-lg" type="text" placeholder="Your Company*"
+                     formControlName="company" required>
+              <!--              <div *ngFor="let error of getControlErrors('firstName')">-->
+              <!--                <small class="text-danger">{{ error }}</small>-->
+              <!--              </div>-->
+            </div>
+
+            <!--          name-->
+            <div class="flex">
+              <div>
+                <input type="text" placeholder="First Name*" formControlName="firstName" required>
+              </div>
+              <div>
+                <input type="text" placeholder="Last Name*" formControlName="lastName" required>
+              </div>
+            </div>
+            <!--          webSite-->
+            <div>
+              <input class="" type="text" placeholder="Company Website"
+                     formControlName="companySite" required>
+            </div>
+            <!--address-->
+            <div>
+              <input class="" type="text" placeholder="Company Address" formControlName="companyAddress" required>
+            </div>
+            <!--          city-->
+            <div>
+              <input class="" type="text" placeholder="City, State ZIP" formControlName="city" required>
+            </div>
+            <!--country-->
+            <div>
+              <input class="" type="text" placeholder="Country" formControlName="country" required>
+            </div>
+
+            <div>
+              <input class="" type="text" placeholder="Phone No" formControlName="phone" required>
+            </div>
+            <!--email-->
+            <div>
+              <input class="" type="text" placeholder="Email Address" formControlName="email" required>
+            </div>
+          </div>
+          <!--          Clients form -->
+          <div class="mt-5" formGroupName="clientInfo">
+            <div>
+              <input class="placeholder-bold text-lg" type="text" placeholder="Client's Company*"
+                     formControlName="company" required>
+            </div>
+
+            <!--          name-->
+            <div class="flex">
+              <div>
+                <input type="text" placeholder="First Name*" formControlName="firstName" required>
+              </div>
+              <div>
+                <input type="text" placeholder="Last Name*" formControlName="firstName" required>
+              </div>
+            </div>
+            <!--address-->
+            <div>
+              <input class="" type="text" placeholder="Client's Address" formControlName="companyAddress" required>
+            </div>
+            <!--          city-->
+            <div>
+              <input class="" type="text" placeholder="City, State ZIP" formControlName="city" required>
+            </div>
+            <!--country-->
+            <div>
+              <input class="" type="text" placeholder="Country" formControlName="country" required>
+            </div>
+            <!--email-->
+            <div>
+              <input class="" type="text" placeholder="Client's Email" formControlName="email" required>
+            </div>
+          </div>
+        </div>
+
+        <!--        right sided -->
+        <div class="right-side font-light flex flex-grow items-end justify-between flex-col relative">
+          <!--         drag and drop-->
+          <div class=" top-0">
+            <div
+              [ngClass]="selectedImage ? 'drop-border-none' : 'drop-border'"
+              class="drop-area cursor-pointer w-52 h-28 hover:scale-90"
+              (drop)="onFileDropped($event)"
+              (dragover)="onDragOver($event)"
+              (click)="fileInput.click()">
+              <p *ngIf="!selectedImage" class="font-bold mx-12 my-2">Drag & drop a logo file or click to upload</p>
+              <div class="w-full h-full" *ngIf="selectedImage">
+                <img class="w-full h-full" [src]="selectedImage" alt="">
+              </div>
+              <input type="file" #fileInput (change)="onFileSelected($event)" multiple style="display: none;"/>
+            </div>
+
+          </div>
+          <!--          errors list -->
+          <!--          <div>-->
+          <!--            <ul>-->
+          <!--              <li *ngFor="let error of getAllErrors()">-->
+          <!--                {{ error }}-->
+          <!--              </li>-->
+          <!--            </ul>-->
+          <!--          </div>-->
+
+          <!--  Totals       -->
+          <div class="flex flex-col justify-end items-end -bottom-4" formGroupName="invoiceInfo">
+            <div class="flex gap-4">
+              <div>Invoice No:</div>
+              <div class="w-24">
+                <input class="w-full text-right placeholder:text-right"
+                       formControlName="invoiceNumber"
+                       type="text" placeholder="###">
+              </div>
+            </div>
+            <!--            invoice date-->
+            <div class="flex gap-4">
+              <div>Invoice Date:</div>
+              <div class="w-24">
+                <input class="w-full"
+                       formControlName="invoiceDate"
+                       type="date">
+              </div>
+            </div>
+            <!--            due date-->
+            <div class="flex gap-4">
+              <div>Due Date:</div>
+              <div class="w-24">
+                <input class="w-full"
+                       formControlName="dueDate"
+                       type="date">
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!--    Table side -->
+    <div class="w-full mt-20" (mouseleave)="hiddAddmoreRows()">
+      <table class="table-auto w-full table-items" (click)="showAddMoreRows = !showAddMoreRows">
+        <thead>
+        <tr class="bg-darkBlue text-white text-left"
+            (mouseenter)="showAddMoreRowsButton()">
+          <th class="font-light">ID</th>
+          <th class="">Description</th>
+          <th class="">Quantity</th>
+          <th class="">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of itemsList; let index = index"
+            (mouseover)="showRemoveRow()"
+            (mouseleave)="showRemoveRowButton = false"
+            class="bg-white even:bg-gray-100 border-b border-black last:border-none">
+          <td>
+            <input type="number" placeholder="" class="w-full" [(ngModel)]="item.id">
+          </td>
+          <td>
+            <input type="text" placeholder="Item description" class="w-full" [(ngModel)]="item.description">
+          </td>
+          <td>
+            <input type="number" placeholder="Quantity" class="w-full" [(ngModel)]="item.quantity">
+          </td>
+          <td class="relative z-99 flex">
+            <input type="number" placeholder="$0.00" class="w-full" [(ngModel)]="item.price">
+            <button (click)="removeRow(index)"
+                    [ngClass]="{'show': showRemoveRowButton}"
+                    class="btn-remove absolute h-6 w-6 bg-red-500 rounded-full text-white">X
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <button [ngClass]="{'show': showAddMoreRows}"
+              class="w-full h-10 btn-danger btn-add mb-10" (click)="addMore()">+Add More
+      </button>
+    </div>
+    <div class="w-full flex gap-10">
+      <div class="w-1/2 rounded-lg border border-black flex flex-col justify-center items-center p-4">
+        <span class="font-light">Notes:</span>
+        <textarea class="w-full placeholder:font-light placeholder:text-center text-center"
+                  rows="2" placeholder="any additional comments"></textarea>
+      </div>
+
+      <div class="w-1/2 flex flex-col gap-2">
+        <div class="flex justify-between">
+          Subtotal:
+          <div>{{ getSubTotal }}</div>
+        </div>
+        <div class="flex justify-between relative">
+          Tax:
+          <div>
+            <input class="w-8 text-right placeholder:text-right" type="number" placeholder="0" max="100"
+                   [(ngModel)]="tax">
+          </div>
+          <div class="absolute -right-5">%</div>
+        </div>
+
+        <div class="flex justify-between relative">
+          Discount:
+          <div><input class="w-8 text-right placeholder:text-right" type="number" placeholder="0"
+                      [(ngModel)]="discount"></div>
+          <div class="absolute -right-5">%</div>
+        </div>
+        <div class="border-b border-black w-full my-1"></div>
+        <div class="flex justify-between">
+          Total:
+          <div>
+            {{ getTotal }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--    footer-->
+    <div class="w-full text-center font-light text-normal mt-10">
+      This invoice was created using the HubSpot
+      <a href="https://www.hubspot.com/invoice-template-generator">Invoice Template Generator</a>
+    </div>
+  </div>
+</div>

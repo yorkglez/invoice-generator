@@ -1,0 +1,172 @@
+/**
+Inputs
+ */
+input {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+input::placeholder {
+  color: #213343;
+  font-weight: 200;
+}
+
+input:hover, input:focus {
+  border: 1px dashed red;
+}
+
+textarea:hover, textarea:focus {
+  border: 1px dashed red;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input.ng-invalid.ng-touched::placeholder {
+  color: #ff1a1a;
+}
+
+.placeholder-bold {
+  font-size: 19.2px;
+
+  &::placeholder {
+    font-weight: 600;
+  }
+}
+
+/*
+Drop file
+ */
+.drop-area {
+  //border: 2px dashed #ff5c35;
+  text-align: center;
+  transition: background-color 0.3s ease;
+
+  &.drop-border {
+    border: 2px dashed #ff5c35;
+  }
+
+  &.drop-border-none {
+    border: none;
+  }
+
+  &:hover {
+    transition: transform 0.3s ease; /* Suaviza la transición */
+  }
+}
+
+.drop-area:hover {
+}
+
+.file-list {
+  margin-top: 20px;
+}
+
+.file-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.file-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.file-list button {
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/*
+Buttons
+ */
+.file-list button:hover {
+  background-color: #ff1a1a; /* Color del botón al pasar el mouse */
+}
+
+.btn-danger {
+  background: #ff5c35;
+  color: white;
+}
+
+.btn-add {
+  visibility: hidden;
+  max-height: 0px;
+  transition: max-height 0.3s;
+}
+.btn-add.show {
+  visibility: visible;
+  max-height: 50px;
+}
+
+.btn-remove {
+  position: absolute;
+  z-index: initial;
+  top: 50%;
+  right: 5px;
+  visibility: hidden;
+  transform: translate(100%, -50%);
+  transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
+
+  &.show {
+    z-index: 99;
+    visibility: visible;
+    transform: translate(0, -50%);
+  }
+}
+
+/**
+Table
+ */
+.table-items {
+  thead th {
+    font-weight: 300;
+  }
+
+  th, td {
+    padding: 0 10px;
+    height: 50px;
+  }
+}
+
+.left-form {
+  padding-bottom: 0.5px;
+}
+//
+//.btn-clear {
+//  visibility: hidden;
+//  will-change: auto;
+//  left: -25px;
+//  top: -25px;
+//  transform: scale(0.5) rotate(-180deg);
+//}
+//
+//.btn-clear.show {
+//  visibility: visible;
+//  will-change: auto;
+//  top: 60px;
+//  left: -60px;
+//  transform: scale(0.5) rotate(-180deg);
+//
+//
+//  //visibility: visible;
+//  //top: 60px;
+//  //left: -60px;
+//  //transition: visibility 0.1s ease-in-out;
+//  //will-change: auto;
+//  //transform: none;
+//}
