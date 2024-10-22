@@ -287,9 +287,16 @@
   </div>
 
 
+
   <!--  buttons -->
   <div *ngIf="!downloadMode"
-       class="flex justify-end mr-6 gap-3 lg:w-2/4">
+       class="relative flex justify-end mr-6 gap-3 lg:w-2/4">
+    <!--  alert required fields -->
+    <div *ngIf="invalidForm"
+      class="absolute right-36 -top-20 z-20 error-list w-52 text-center mb-2">
+      Please fill out the required fields
+    </div>
+
     <button class="btn btn-primary">
       Share your invoice using HubSpot
     </button>

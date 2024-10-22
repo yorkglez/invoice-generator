@@ -51,6 +51,7 @@ export class InvoiceGeneratorComponent {
   protected showColorPicker: boolean = false;
   protected showConfig: boolean = false;
   protected downloadMode: boolean = false;
+  protected invalidForm: boolean = false;
   protected readonly onmouseleave = onmouseleave;
 
 
@@ -221,7 +222,6 @@ export class InvoiceGeneratorComponent {
     const errors: string[] = [];
 
     if (control.errors) {
-      // Manejar errores síncronos
       if (control.hasError('required')) {
         errors.push(`${controlName} es obligatorio.`);
       }
@@ -233,7 +233,6 @@ export class InvoiceGeneratorComponent {
         const maxLength = control.getError('maxlength').requiredLength;
         errors.push(`${controlName} debe tener como máximo ${maxLength} caracteres.`);
       }
-      // Aquí puedes añadir más validadores según tus necesidades
     }
 
     return errors;
@@ -273,8 +272,17 @@ export class InvoiceGeneratorComponent {
     this.showColorPicker = !this.showColorPicker;
   }
 
+  /**
+   * Toggle the configuration
+   */
   showDownloadMode() {
-    if (this.infoForm.valid)
+    if (this.infoForm.valid) {
       this.downloadMode = true
+    } else {
+      this.invalidForm = true;
+      setTimeout(() => {
+        this.invalidForm = false;
+      }, 4000);
+    }
   }
 }
