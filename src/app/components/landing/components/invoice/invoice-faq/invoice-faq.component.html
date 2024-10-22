@@ -1,0 +1,19 @@
+<div class="w-full ">
+  <div class="w-full">
+    <h1 class="text-3xl font-bold text-center my-6">Invoice Generator FAQ</h1>
+    <div class="full">
+      <ng-container *ngFor="let item of faqs">
+        <expansion-panel [content]="item"></expansion-panel>
+      </ng-container>
+    </div>
+  </div>
+  <!--footer-->
+  <div class="disclaimer font-light px-4 mt-24 pb-4">
+    Disclaimer: These FAQs include some information on legal issues surrounding invoicing, but legal information is not
+    the same as legal advice -- applying the law to a specific circumstance. We’ve conducted research to better ensure
+    that our information is accurate and useful, but we insist that you talk to a lawyer if you want professional
+    assurance that our information, and your interpretation of it, is accurate. In a nutshell, you may not rely on this
+    information as legal advice, nor as a recommendation or endorsement of any particular legal understanding, and you
+    should instead see this info as for entertainment purposes only.
+  </div>
+</div>
