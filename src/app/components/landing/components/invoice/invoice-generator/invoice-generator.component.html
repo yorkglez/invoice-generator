@@ -1,6 +1,6 @@
-<div class="relative w-full flex justify-center px-40 py-20 bg-lightGray">
+<div class="relative w-full flex lg:flex-row justify-center lg:px-40 py-20 bg-lightGray md:flex-col sm:flex-col">
   <!--  settings buttons -->
-  <div class="relative w-32 h-72 flex flex-col items-center gap-7 mr-8">
+  <div class="relative w-32 lg:h-72 md:mb-6 flex flex-col items-center gap-7 mr-8">
     <button
       (click)="showConfig = !showConfig"
       class="w-20 h-20 bg-red-500 rounded-full  flex items-center justify-center">
@@ -27,7 +27,7 @@
   </div>
 
   <!--  template-->
-  <div style="min-height: 800px" class="relative w-2/4 px-12 py-6 bg-white shadow-2xl z-20">
+  <div style="min-height: 800px" class="relative lg:w-2/4  sm:w-screen lg:px-12 lg:py-6 bg-white shadow-2xl z-20">
     <!--    top sided -->
     <div class="">
       <!--      form left -->
