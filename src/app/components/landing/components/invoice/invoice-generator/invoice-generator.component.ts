@@ -53,11 +53,12 @@ export class InvoiceGeneratorComponent {
   protected downloadMode: boolean = false;
   protected invalidForm: boolean = false;
   protected readonly onmouseleave = onmouseleave;
+  private total: number = 0;
 
 
   constructor(private fb: FormBuilder) {
     this.infoForm = this.fb.group({
-      company: ['', Validators.required, Validators.minLength(3)],
+      company: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       companySite: ['', Validators.required],
@@ -79,13 +80,6 @@ export class InvoiceGeneratorComponent {
         invoiceNumber: ['', Validators.required],
         invoiceDate: ['', Validators.required],
         dueDate: ['', Validators.required],
-      }),
-      notes: [''],
-      totals: new FormBuilder().group({
-        subtotal: [0],
-        tax: [0],
-        discount: [0],
-        total: [0]
       }),
     });
   }
@@ -201,7 +195,7 @@ export class InvoiceGeneratorComponent {
     const tax = (this.subtotal / 100) * this.tax;
     let total = this.subtotal + tax;
     const discount = (total / 100) * this.discount;
-
+    this.total = total - discount;
     return total - discount;
   }
 
@@ -209,7 +203,6 @@ export class InvoiceGeneratorComponent {
     const errors: string[] = [];
     Object.keys(this.infoForm.controls).forEach(controlName => {
       const controlError = this.getControlErrors(controlName);
-      console.log(controlError)
       errors.push(...controlError);
     });
     return errors;
@@ -284,5 +277,21 @@ export class InvoiceGeneratorComponent {
         this.invalidForm = false;
       }, 4000);
     }
+  }
+
+  public generatePDF() {
+    const data = {
+      ...this.infoForm.value,
+      items: this.itemsList,
+      color: this.colorSelected,
+      image: this.selectedImage,
+      totals:{
+        subtotal: this.subtotal,
+        tax: this.tax,
+        discount: this.discount,
+        total: this.total
+      }
+    }
+    console.log(data)
   }
 }

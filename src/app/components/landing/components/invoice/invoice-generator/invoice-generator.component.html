@@ -30,7 +30,9 @@
     </div>
 
     <!--  template-->
-    <div class="invoice-template relative lg:w-2/4  sm:w-screen lg:px-12 lg:py-6 bg-white shadow-2xl z-20 ">
+    <div
+      id="template-container"
+      class="invoice-template relative lg:w-2/4  sm:w-screen lg:px-12 lg:py-6 bg-white shadow-2xl z-20 ">
       <!--    top sided -->
       <div class="">
         <!--      form left -->
@@ -297,7 +299,7 @@
       Please fill out the required fields
     </div>
 
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" (click)="generatePDF()">
       Share your invoice using HubSpot
     </button>
     <button (click)="showDownloadMode()" class="btn btn-secondary">
