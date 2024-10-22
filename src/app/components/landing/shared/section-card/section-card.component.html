@@ -1,0 +1,27 @@
+<!--py-24 px-104-->
+<div [style.background]="content.backgroundColor"
+     class="w-full card-section  py-12 flex justify-center items-cente ">
+  <div  [style.width]="content.width" [ngClass]="getClass">
+    <div [style.color]="content.textColor">
+      <!--  title -->
+      <h1 class="text-5xl font-bold" [style.font-size]="content.titleContent.size">
+        {{ content?.titleContent.title }}
+      </h1>
+      <!--  Content text-->
+      <div class="text-lg mt-4 leading-8" [innerHTML]="safeHtml"></div>
+    </div>
+
+    <div *ngIf="content.descriptionContent.image" [style.width]="content.descriptionContent.imageSize">
+      <img [src]="content.descriptionContent.image" alt="">
+    </div>
+  </div>
+</div>
+
+<div *ngIf="content.buttons">
+  <a [href]="content.buttons.href"
+     [style.background]="content.buttons.backgroundColor"
+     [style.color]="content.buttons.textColor"
+     class="py-6 px-6 rounded-lg">
+    {{ content.buttons.text }}
+  </a>
+</div>
