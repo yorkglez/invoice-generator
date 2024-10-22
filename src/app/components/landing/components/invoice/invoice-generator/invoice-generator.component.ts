@@ -50,6 +50,7 @@ export class InvoiceGeneratorComponent {
   protected showRemoveRowButton: boolean = false;
   protected showColorPicker: boolean = false;
   protected showConfig: boolean = false;
+  protected downloadMode: boolean = false;
   protected readonly onmouseleave = onmouseleave;
 
 
@@ -270,5 +271,10 @@ export class InvoiceGeneratorComponent {
    */
   protected toggleColorPicker() {
     this.showColorPicker = !this.showColorPicker;
+  }
+
+  showDownloadMode() {
+    if (this.infoForm.valid)
+      this.downloadMode = true
   }
 }
