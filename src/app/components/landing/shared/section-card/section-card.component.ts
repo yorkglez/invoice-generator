@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SectionCard} from '../../../../utils/interfaces/section-card.interface';
+import {SectionCard} from '../../../../common/interfaces/section-card.interface';
 import {DomSanitizer} from '@angular/platform-browser';
 import {NgClass, NgIf} from '@angular/common';
 
@@ -25,11 +25,19 @@ export class SectionCardComponent {
 
   get getClass(): string {
     let classString = '';
-    if (this.content.descriptionContent.imagePosition === 'right') {
-
-    }
+    let padding = this.content.padding ? this.content.padding : 'py-10';
     if (this.content.descriptionContent.imagePosition === 'left') {
-      classString = 'flex flex-row-reverse justify-between items-center gap-36';
+      classString = 'flex flex-row-reverse justify-between items-center gap-36 ';
+    } else {
+      classString = 'flex flex-col justify-center items-center '
+    }
+    return classString + padding;
+  }
+
+  get getContainerClass(): string {
+    let classString = '';
+    if (this.content.logoPosition === 'left') {
+      classString = 'flex flex-row items-center justify-center items-center gap-36';
     } else {
       classString = 'flex flex-col justify-center items-center '
     }

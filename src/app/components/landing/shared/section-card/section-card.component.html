@@ -1,10 +1,19 @@
 <!--py-24 px-104-->
 <div [style.background]="content.backgroundColor"
-     class="w-full card-section  py-12 flex justify-center items-cente ">
-  <div  [style.width]="content.width" [ngClass]="getClass">
+     [style.height]="content.height"
+     class="w-full card-section py-10"
+     [ngClass]="getContainerClass">
+  <!--    logo-->
+  <div>
+    <img width="150px" src="/images/logos/{{content.logo}}" alt="">
+  </div>
+  <div class=" h-auto"
+       [style.width]="content.width" [ngClass]="getClass">
     <div [style.color]="content.textColor">
       <!--  title -->
-      <h1 class="text-5xl font-bold" [style.font-size]="content.titleContent.size">
+      <h1 class="text-5xl font-bold"
+          [style.text-align]="content.titleContent.align"
+          [style.font-size]="content.titleContent.size">
         {{ content?.titleContent.title }}
       </h1>
       <!--  Content text-->
@@ -15,13 +24,15 @@
       <img [src]="content.descriptionContent.image" alt="">
     </div>
   </div>
+
+  <!--  Buttons -->
+  <div class="w-full flex justify-center" *ngIf="content.buttons">
+    <a [href]="content.buttons.href"
+       [style.background]="content.buttons.backgroundColor"
+       [style.color]="content.buttons.textColor"
+       class="relative h-14 flex items-center px-6 rounded-lg">
+      {{ content.buttons.text }}
+    </a>
+  </div>
 </div>
 
-<div *ngIf="content.buttons">
-  <a [href]="content.buttons.href"
-     [style.background]="content.buttons.backgroundColor"
-     [style.color]="content.buttons.textColor"
-     class="py-6 px-6 rounded-lg">
-    {{ content.buttons.text }}
-  </a>
-</div>
