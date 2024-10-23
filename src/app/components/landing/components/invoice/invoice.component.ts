@@ -3,6 +3,7 @@ import {SectionCardComponent} from '../../shared/section-card/section-card.compo
 import {NgForOf} from '@angular/common';
 import {InvoiceFaqComponent} from './invoice-faq/invoice-faq.component';
 import {InvoiceGeneratorComponent} from './invoice-generator/invoice-generator.component';
+import {NavigationComponent} from '../../shared/navigation/navigation.component';
 
 @Component({
   selector: 'app-invoice',
@@ -11,7 +12,7 @@ import {InvoiceGeneratorComponent} from './invoice-generator/invoice-generator.c
     SectionCardComponent,
     NgForOf,
     InvoiceFaqComponent,
-    InvoiceGeneratorComponent
+    InvoiceGeneratorComponent,
   ],
   templateUrl: './invoice.component.html',
   styleUrl: './invoice.component.scss'
