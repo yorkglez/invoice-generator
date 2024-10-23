@@ -1,0 +1,82 @@
+<div class="  w-full z-40">
+  <!--  top navigation-->
+  <div class="bg-white w-full flex justify-between">
+    <div class="h-full w-5/12">
+      <ul class="flex h-full font-semibold gap-5">
+        <div class="nav-item h-full hover:cursor-pointer py-4">
+          <div class="h-full px-4 flex items-center text-sm">
+            <i class="fas fa-globe-americas mr-2"></i>
+            <span>English</span>
+            <i class="fas fa-chevron-down ml-2"></i>
+          </div>
+        </div>
+
+        <div class="nav-item h-full hover:cursor-pointer py-4">
+          <div class="h-full px-4 flex items-center text-sm">
+            <i class="fas fa-toggle-off mr-2"></i>
+            <span>High Contrast</span>
+          </div>
+        </div>
+
+        <div class="nav-item h-full hover:cursor-pointer py-4">
+          <div class="h-full px-4 flex items-center text-sm">
+            <i class="fas fa-comments mr-2"></i>
+            <span>Customer Support</span>
+          </div>
+        </div>
+
+        <div class="nav-item h-full hover:cursor-pointer py-4">
+          <div class="h-full px-4 flex items-center text-sm">
+            <i class="fas fa-user-alt mr-2"></i>
+            <span>Contact Sales</span>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <div>
+      <ul class="flex h-full font-semibold gap-5">
+        <div class="nav-item h-full hover:cursor-pointer py-4">
+          <div class="h-full px-4 flex items-center text-sm search-button">
+            <i class="fas fa-search "></i>
+          </div>
+        </div>
+        <div class="nav-item h-full hover:cursor-pointer py-4">
+          <div class="h-full px-4 flex items-center text-sm">
+            <span>Go to my account</span>
+          </div>
+        </div>
+
+        <div class="nav-item h-full hover:cursor-pointer py-4">
+          <div class="h-full px-4 flex items-center text-sm">
+            <span>About</span>
+            <i class="fas fa-chevron-down ml-2"></i>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <!--  down navigation-->
+  <div class="navigation flex items-center justify-center" [ngClass]="{'scroll-top': !scrollTop}">
+    <!--  logo-->
+    <div class="brand mr-11" [ngClass]="{'brand-small' : !scrollTop}">
+      <img [src]="scrollTop ? '/images/logos/hubspot.svg' : '/images/logos/short-logo.svg'" alt="">
+    </div>
+    <nav class="h-full w-5/12">
+      <ul class="flex h-full gap-5">
+        <div *ngFor="let item of navItems" class="h-full nav-item hover:cursor-pointer">
+          <div class="h-full px-4 flex items-center">
+            <span>{{ item.name }} <i class="fas fa-chevron-down text-lg ml-2"></i></span>
+          </div>
+        </div>
+      </ul>
+    </nav>
+    <!--  button-->
+    <div>
+      <button class="btn btn-primary h-10 w-56 text-normal flex items-center">
+        Start free or get a demo
+      </button>
+    </div>
+  </div>
+
+</div>

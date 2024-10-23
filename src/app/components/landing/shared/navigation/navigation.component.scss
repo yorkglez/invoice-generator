@@ -1,0 +1,37 @@
+.navigation {
+  height: 76px;
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  z-index: 999;
+}
+
+.brand {
+  width: 100px;
+}
+
+.brand-small {
+  width: 50px;
+  margin-right: 2px;
+}
+
+.nav-item {
+  &:hover {
+    text-decoration: underline;
+    color: #005FA3;
+
+    i {
+      text-decoration: none;
+    }
+  }
+}
+
+.search-button {
+  color: #005FA3;
+  font-size: 17px;
+}
+
+.scroll-top {
+  top: 0;
+  transition: top 3s;
+}
