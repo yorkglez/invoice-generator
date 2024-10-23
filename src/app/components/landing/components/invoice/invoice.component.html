@@ -6,39 +6,8 @@
   <!--Create invoice-->
   <section-card [content]="customInvoice"></section-card>
   <!--Manage-->
-  <div class="flex flex-col items-center">
-    <div class="w-full py-6 font-medium text-center text-4xl text-white bg-darkBlue">
-      Manage your invoice with Commerce Hub
-    </div>
-    <div class="w-full text-center py-7 font-light bg-lightGray">
-      Explore additional features for managing your invoice in HubSpot:
-    </div>
-
-    <!--  cards-->
-    <div
-      class="w-full bg-white mt-6 lg:px-96 md:px-9 grid lg:grid-cols-4 md:grid-cols-2 lg:grid-flow-col gap-7 pt-6 mb-16">
-      <!--    card item -->
-      <div *ngFor="let item of manageCards"
-           class="">
-        <div>
-          <img [src]="item.icon" alt="">
-        </div>
-        <div class="mt-4 ">
-          <div class="font-bold text-lg">{{ item.title }}</div>
-          <div class="font-light mt-2">{{ item.content }}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="w-full py-10 bg-darkBlue flex justify-center">
-      <button class="font-medium px-6 py-3 bg-white rounded-lg hover:opacity-60 transition ease-in-out delay-150">
-        Create my invoice
-      </button>
-    </div>
-  </div>
-
+  <manage-invoice></manage-invoice>
 
   <!--  FAQ-->
   <invoice-faq></invoice-faq>
-
 </div>
