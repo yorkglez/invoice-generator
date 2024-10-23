@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {ColorTwitterModule} from 'ngx-color/twitter';
+import {jsPDF} from 'jspdf';
 
 @Component({
   selector: 'invoice-generator',
@@ -55,6 +56,7 @@ export class InvoiceGeneratorComponent {
   protected readonly onmouseleave = onmouseleave;
   private total: number = 0;
 
+  @ViewChild('template', {static: false}) template!: ElementRef;
 
   constructor(private fb: FormBuilder) {
     this.infoForm = this.fb.group({
@@ -279,19 +281,19 @@ export class InvoiceGeneratorComponent {
     }
   }
 
-  public generatePDF() {
-    const data = {
-      ...this.infoForm.value,
-      items: this.itemsList,
-      color: this.colorSelected,
-      image: this.selectedImage,
-      totals:{
-        subtotal: this.subtotal,
-        tax: this.tax,
-        discount: this.discount,
-        total: this.total
-      }
-    }
-    console.log(data)
+  /**
+   * Toggle the configuration
+   */
+  generatePDF() {
+    let pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.html(this.template.nativeElement, {
+      callback: (pdf) => {
+        pdf.save('invoice.pdf');
+      },
+      x: 10,
+      y: 10,
+      width: 2000
+    })
   }
+
 }

@@ -30,9 +30,9 @@
     </div>
 
     <!--  template-->
-    <div
-      id="template-container"
-      class="invoice-template relative lg:w-2/4  sm:w-screen lg:px-12 lg:py-6 bg-white shadow-2xl z-20 ">
+    <div #template
+         id="template-container"
+         class="invoice-template relative lg:w-2/4  sm:w-screen lg:px-12 lg:py-6 bg-white shadow-2xl z-20 ">
       <!--    top sided -->
       <div class="">
         <!--      form left -->
@@ -181,7 +181,7 @@
 
       <!--    Table side -->
       <div class="w-full mt-20" (mouseleave)="hiddAddmoreRows()">
-        <table class="table-fixed w-full table-items" (click)="showAddMoreRows = !showAddMoreRows">
+        <table class="table-fixed w-11/12 table-items" (click)="showAddMoreRows = !showAddMoreRows">
           <thead>
           <tr [style.background]="colorSelected"
               class="text-white text-left"
@@ -282,24 +282,22 @@
         relevant content, products, and services. You may unsubscribe from these communications at any time. For more
         information, check out our Privacy Policy.
       </p>
-      <button class="btn btn-primary w-60">
+      <button (click)="generatePDF()" class="btn btn-primary w-60">
         Download now
       </button>
     </div>
   </div>
-
-
 
   <!--  buttons -->
   <div *ngIf="!downloadMode"
        class="relative flex justify-end mr-6 gap-3 lg:w-2/4">
     <!--  alert required fields -->
     <div *ngIf="invalidForm"
-      class="absolute right-36 -top-20 z-20 error-list w-52 text-center mb-2">
+         class="absolute right-36 -top-20 z-20 error-list w-52 text-center mb-2">
       Please fill out the required fields
     </div>
 
-    <button class="btn btn-primary" (click)="generatePDF()">
+    <button class="btn btn-primary">
       Share your invoice using HubSpot
     </button>
     <button (click)="showDownloadMode()" class="btn btn-secondary">
