@@ -53,7 +53,6 @@ export class InvoiceGeneratorComponent {
   protected showConfig: boolean = false;
   protected downloadMode: boolean = false;
   protected invalidForm: boolean = false;
-  protected readonly onmouseleave = onmouseleave;
   private total: number = 0;
 
   @ViewChild('template', {static: false}) template!: ElementRef;
