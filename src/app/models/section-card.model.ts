@@ -1,11 +1,11 @@
 export class SectionCardModel {
-  public backgroundColor: string;
+  public backgroundColor?: string;
   public textColor: string;
-  public width: string;
-  public height: string;
+  public width?: string;
+  public height?: string;
   public logo: string;
   public padding: string;
-  public logoPosition: string;
+  public logoPosition?: string;
   public buttons: {
     backgroundColor: string;
     textColor: string;
@@ -28,6 +28,7 @@ export class SectionCardModel {
     this.backgroundColor = data.backgroundColor || '';
     this.textColor = data.textColor || '';
     this.width = data.width || '';
+    this.height = data.height || '';
     this.buttons = data.buttons || null;
     this.titleContent = data.titleContent || {};
     this.descriptionContent = data.descriptionContent || {};
