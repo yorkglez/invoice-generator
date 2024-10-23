@@ -5,7 +5,7 @@
      [ngClass]="getContainerClass">
   <!--    logo-->
   <div>
-    <img width="150px" src="/images/logos/{{content.logo}}" alt="">
+    <img width="150px"  [src]="content.logo" alt="">
   </div>
   <div class=" h-auto"
        [style.width]="content.width" [ngClass]="getClass">
