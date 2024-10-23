@@ -1,32 +1,33 @@
 <!--py-24 px-104-->
-<div [style.background]="content.backgroundColor"
-     [style.height]="content.height"
-     class="w-full card-section py-10"
+<div [style.background]="content?.backgroundColor"
+     [style.height]="content?.height"
+     class="w-full relative card-section py-10"
      [ngClass]="getContainerClass">
   <!--    logo-->
-  <div>
-    <img width="150px"  [src]="content.logo" alt="">
+  <div class="logo">
+    <img width="150px" [src]="content?.logo" alt="">
   </div>
+
   <div class=" h-auto"
-       [style.width]="content.width" [ngClass]="getClass">
-    <div [style.color]="content.textColor">
+       [style.width]="content?.width" [ngClass]="getClass">
+    <div [style.color]="content?.textColor">
       <!--  title -->
       <h1 class="text-5xl font-bold"
-          [style.text-align]="content.titleContent.align"
-          [style.font-size]="content.titleContent.size">
+          [style.text-align]="content?.titleContent?.align"
+          [style.font-size]="content?.titleContent?.size">
         {{ content?.titleContent.title }}
       </h1>
       <!--  Content text-->
       <div class="text-lg mt-4 leading-8" [innerHTML]="safeHtml"></div>
     </div>
 
-    <div *ngIf="content.descriptionContent.image" [style.width]="content.descriptionContent.imageSize">
-      <img [src]="content.descriptionContent.image" alt="">
+    <div *ngIf="content?.descriptionContent.image" [style.width]="content?.descriptionContent.imageSize">
+      <img [src]="content?.descriptionContent.image" alt="">
     </div>
   </div>
 
   <!--  Buttons -->
-  <div class="w-full flex justify-center" *ngIf="content.buttons">
+  <div class="w-full flex justify-center" *ngIf="content?.buttons">
     <a [href]="content.buttons.href"
        [style.background]="content.buttons.backgroundColor"
        [style.color]="content.buttons.textColor"

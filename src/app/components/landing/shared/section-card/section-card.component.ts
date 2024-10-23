@@ -1,14 +1,13 @@
 import {Component, Input} from '@angular/core';
-import {SectionCard} from '../../../../common/interfaces/section-card.interface';
 import {DomSanitizer} from '@angular/platform-browser';
-import {NgClass, NgIf} from '@angular/common';
+import {JsonPipe, NgClass, NgIf} from '@angular/common';
 
 @Component({
   selector: 'section-card',
   standalone: true,
   imports: [
     NgIf,
-    NgClass
+    NgClass,
   ],
   templateUrl: './section-card.component.html',
   styleUrl: './section-card.component.scss'
@@ -25,8 +24,8 @@ export class SectionCardComponent {
 
   get getClass(): string {
     let classString = '';
-    let padding = this.content.padding ? this.content.padding : 'py-10';
-    if (this.content.descriptionContent.imagePosition === 'left') {
+    let padding = this.content?.padding ? this.content?.padding : 'py-10';
+    if (this.content?.descriptionContent?.imagePosition === 'left') {
       classString = 'flex flex-row-reverse justify-between items-center gap-36 ';
     } else {
       classString = 'flex flex-col justify-center items-center '
@@ -36,12 +35,15 @@ export class SectionCardComponent {
 
   get getContainerClass(): string {
     let classString = '';
-    if (this.content.logoPosition === 'left') {
+    if (this.content?.logoPosition === 'left') {
       classString = 'flex flex-row items-center justify-center items-center gap-36';
-    } else {
+    }
+    if (this.content?.logoPosition === 'top-left') {
+      classString = 'flex flex-row items-center top-left justify-center items-center gap-36';
+    }
+    else {
       classString = 'flex flex-col justify-center items-center '
     }
     return classString;
   }
-
 }
