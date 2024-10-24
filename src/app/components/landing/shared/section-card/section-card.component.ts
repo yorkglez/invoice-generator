@@ -26,7 +26,8 @@ export class SectionCardComponent {
     let classString = '';
     let padding = this.content?.padding ? this.content?.padding : 'py-10';
     if (this.content?.descriptionContent?.imagePosition === 'left') {
-      classString = 'flex flex-row-reverse justify-between items-center gap-36 ';
+      // flex flex-row-reverse justify-between
+      classString = 'row-reverse  items-center ';
     } else {
       classString = 'flex flex-col justify-center items-center '
     }

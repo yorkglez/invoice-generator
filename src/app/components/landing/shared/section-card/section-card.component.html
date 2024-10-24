@@ -1,27 +1,27 @@
-<!--py-24 px-104-->
 <div [style.background]="content?.backgroundColor"
      [style.height]="content?.height"
-     class="w-full relative card-section py-10"
+     class="w-full relative card-section md:px-12 sm:px-4 py-6"
      [ngClass]="getContainerClass">
   <!--    logo-->
   <div class="logo">
-    <img width="150px" [src]="content?.logo" alt="">
+    <img class="w-full" [src]="content?.logo" alt="">
   </div>
 
-  <div class=" h-auto"
-       [style.width]="content?.width" [ngClass]="getClass">
-    <div [style.color]="content?.textColor">
+  <div class="content h-auto"
+       [style.width]="content?.width"
+       [ngClass]="getClass">
+    <div class="content-text mb-6" [style.color]="content?.textColor">
       <!--  title -->
-      <h1 class="text-5xl font-bold"
+      <h1 class="font-bold"
           [style.text-align]="content?.titleContent?.align"
           [style.font-size]="content?.titleContent?.size">
         {{ content?.titleContent.title }}
       </h1>
       <!--  Content text-->
-      <div class="text-lg mt-4 leading-8" [innerHTML]="safeHtml"></div>
+      <div class="text-lg font-light mt-4 leading-8" [innerHTML]="safeHtml"></div>
     </div>
-
-    <div *ngIf="content?.descriptionContent.image" [style.width]="content?.descriptionContent.imageSize">
+    <div *ngIf="content?.descriptionContent.image"
+         class="content-image ">
       <img [src]="content?.descriptionContent.image" alt="">
     </div>
   </div>
