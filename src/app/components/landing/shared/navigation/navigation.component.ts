@@ -31,6 +31,25 @@ export class NavigationComponent {
       url: '/contact'
     }
   ];
+  protected readonly navItemsMobile = [
+    {
+      name: 'English',
+      url: '/'
+    },
+    {
+      name: 'High Contrast',
+      url: '/about'
+    },
+    {
+      name: 'Custumer Support',
+      url: '/services'
+    },
+    {
+      name: 'Contact Sales',
+      url: '/contact'
+    }
+  ];
+
   protected brandImage: string = '/images/logos/hubspot.svg';
 
   @HostListener('window:scroll', [])
@@ -43,5 +62,10 @@ export class NavigationComponent {
       nav.classList.remove('scrolled');
       this.brandImage = '/images/logos/hubspot.svg';
     }
+  }
+
+  toggleNav() {
+   const nav = document.getElementById('mainNav') as HTMLElement;
+   nav.classList.toggle('nav-mobile-open');
   }
 }

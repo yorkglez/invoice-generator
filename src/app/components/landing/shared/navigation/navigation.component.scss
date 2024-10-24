@@ -14,6 +14,11 @@
   .nav-items {
     margin-left: 44px;
     transition: .3s ease-in-out;
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
@@ -48,10 +53,13 @@
 
 .nav-item {
   &:hover {
-    text-decoration: underline;
-    color: #005FA3;
+    span {
+      text-decoration: underline;
+      color: #005FA3;
+    }
 
     i {
+      color: #005FA3;
       text-decoration: none;
     }
   }
@@ -66,3 +74,124 @@
   top: 0;
   transition: top 3s;
 }
+
+.search-mobile {
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .search-input {
+      width: 100%;
+      border: 1px solid #7691ad;
+      border-radius: 4px;
+      padding: 8px 16px 8px 40px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+    }
+  }
+}
+
+.buttons-mobile {
+  display: none;
+}
+
+.search-mobile {
+  display: none;
+}
+
+.nav-top {
+  display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  #nav-content {
+    display: flex;
+    height: 100%;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .nav-bottom {
+    display: flex;
+    padding: 8px 16px;
+    height: 76px;
+
+    nav {
+      display: flex;
+      width: 100%;
+
+      .brand-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .nav-items {
+        display: none;
+      }
+    }
+  }
+
+  .nav-mobile-open {
+    display: flex;
+    padding: 8px 16px;
+    transition: height 0.3s;
+    height: 100vh;
+
+    nav {
+
+      flex-direction: column;
+
+      .buttons-mobile {
+        display: block;
+      }
+
+      .search-mobile {
+        display: block;
+      }
+
+      .nav-items {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+
+        .nav-item, .nav-items-mobile {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-weight: 300;
+          padding: 8px;
+
+          i {
+            transform: rotateZ(-90deg);
+          }
+        }
+
+      }
+
+    }
+
+    .buttons-mobile {
+      .btn {
+        justify-content: center;
+      }
+
+      .line-decoration {
+        width: 100%;
+        border-bottom: 1px solid #dbe4ed;
+        margin: 16px 0;
+      }
+
+    }
+  }
+}
+
