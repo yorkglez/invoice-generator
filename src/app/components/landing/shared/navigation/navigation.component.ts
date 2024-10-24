@@ -51,6 +51,7 @@ export class NavigationComponent {
   ];
 
   protected brandImage: string = '/images/logos/hubspot.svg';
+  protected openNav: boolean = false;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -65,7 +66,8 @@ export class NavigationComponent {
   }
 
   toggleNav() {
-   const nav = document.getElementById('mainNav') as HTMLElement;
-   nav.classList.toggle('nav-mobile-open');
+    const nav = document.getElementById('mainNav') as HTMLElement;
+    nav.classList.toggle('nav-mobile-open');
+    this.openNav = !this.openNav;
   }
 }
