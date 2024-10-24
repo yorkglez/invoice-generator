@@ -3,7 +3,7 @@
    pt-20 pb-6 bg-lightGray md:flex-col sm:flex-col" [ngClass]="{'download-animation': downloadMode}">
     <!--  settings buttons -->
     <div *ngIf="!downloadMode"
-         class="relative w-32 lg:h-72 md:mb-6 flex flex-col items-center gap-7 mr-8">
+         class="relative w-32 lg:h-72 md:mb-6 flex flex-col items-center gap-7 mr-8 sm:mb-5">
       <button
         (click)="showConfig = !showConfig"
         class="w-20 h-20 bg-red-500 rounded-full  flex items-center justify-center">
@@ -32,12 +32,12 @@
     <!--  template-->
     <div #template
          id="template-container"
-         class="invoice-template relative lg:w-2/4  sm:w-screen lg:px-12 lg:py-6 bg-white shadow-2xl z-20 ">
+         class="invoice-template relative lg:w-11/12 sm:w-screen lg:px-12 lg:py-6 sm:p-6 bg-white shadow-2xl z-20 ">
       <!--    top sided -->
       <div class="">
         <!--      form left -->
         <form [formGroup]="infoForm" class="flex justify-between" novalidate>
-          <div class="left-form">
+          <div class="left-form w-6/12">
             <h1 class="text-3xl font-bold mb-4">Invoice</h1>
             <!--          Company form -->
             <div>
@@ -51,10 +51,10 @@
 
               <!--          name-->
               <div class="flex">
-                <div>
+                <div class="w-6/12">
                   <input type="text" placeholder="First Name*" formControlName="firstName" required>
                 </div>
-                <div>
+                <div class="w-6/12">
                   <input type="text" placeholder="Last Name*" formControlName="lastName" required>
                 </div>
               </div>
@@ -93,10 +93,10 @@
 
               <!--          name-->
               <div class="flex">
-                <div>
+                <div class="w-6/12">
                   <input type="text" placeholder="First Name*" formControlName="firstName" required>
                 </div>
-                <div>
+                <div class="w-6/12">
                   <input type="text" placeholder="Last Name*" formControlName="firstName" required>
                 </div>
               </div>
@@ -122,14 +122,15 @@
           <!--        right sided -->
           <div class="right-side font-light flex flex-grow items-end justify-between flex-col relative">
             <!--         drag and drop-->
-            <div class=" top-0">
+            <div class="w-52 h-28 sm:w-40 top-0">
               <div
                 [ngClass]="selectedImage ? 'drop-border-none' : 'drop-border'"
-                class="drop-area cursor-pointer w-52 h-28 hover:scale-90"
+                class="drop-area cursor-pointer  hover:scale-90"
                 (drop)="onFileDropped($event)"
                 (dragover)="onDragOver($event)"
                 (click)="fileInput.click()">
-                <p *ngIf="!selectedImage" class="font-bold mx-12 my-2">Drag & drop a logo file or click to upload</p>
+                <p *ngIf="!selectedImage" class="font-bold lg:mx-12 sm:mx-4 my-2">Drag & drop a logo file or click to
+                  upload</p>
                 <div class="w-full h-full" *ngIf="selectedImage">
                   <img class="w-full h-full" [src]="selectedImage" alt="">
                 </div>
@@ -147,7 +148,7 @@
             </div>
 
             <!--  Totals       -->
-            <div class="flex flex-col justify-end items-end -bottom-4" formGroupName="invoiceInfo">
+            <div class="flex flex-col justify-end items-end -bottom-4 sm:text-sm" formGroupName="invoiceInfo">
               <div class="flex gap-4">
                 <div>Invoice No:</div>
                 <div class="w-24">
@@ -181,7 +182,7 @@
 
       <!--    Table side -->
       <div class="w-full mt-20" (mouseleave)="hiddAddmoreRows()">
-        <table class="table-fixed w-11/12 table-items" (click)="showAddMoreRows = !showAddMoreRows">
+        <table class="table-fixed  w-12/12 table-items" (click)="showAddMoreRows = !showAddMoreRows">
           <thead>
           <tr [style.background]="colorSelected"
               class="text-white text-left"
@@ -230,7 +231,7 @@
         </textarea>
         </div>
 
-        <div class="w-1/2 flex flex-col gap-2">
+        <div class="w-1/2 flex flex-col gap-2 sm:text-normal">
           <div class="flex justify-between">
             Subtotal:
             <div>{{ getSubTotal }}</div>
@@ -276,7 +277,7 @@
     </div>
     <!--Download Mode-->
     <div *ngIf="downloadMode"
-         class="bg-white shadow-2xl p-4 flex flex-col h-80 w-4/12 items-center justify-center">
+         class="bg-white shadow-2xl p-4 flex flex-col h-80 lg:w-4/12 sm:w-12/12 items-center justify-center">
       <p class="font-light text-center leading-7 text-normal pb-6">
         We're committed to your privacy. HubSpot uses the information you provide to us to contact you about our
         relevant content, products, and services. You may unsubscribe from these communications at any time. For more
@@ -290,7 +291,7 @@
 
   <!--  buttons -->
   <div *ngIf="!downloadMode"
-       class="relative flex justify-end mr-6 gap-3 lg:w-2/4">
+       class="relative flex flex-wrap sm:justify-center justify-end mr-6 gap-3 lg:w-2/4">
     <!--  alert required fields -->
     <div *ngIf="invalidForm"
          class="absolute right-36 -top-20 z-20 error-list w-52 text-center mb-2">
@@ -300,7 +301,7 @@
     <button class="btn btn-primary">
       Share your invoice using HubSpot
     </button>
-    <button (click)="showDownloadMode()" class="btn btn-secondary">
+    <button (click)="showDownloadMode()" class="btn btn-secondary sm:hidden lg:flex">
       Download now
     </button>
   </div>

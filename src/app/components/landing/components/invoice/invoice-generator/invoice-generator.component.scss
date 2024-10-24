@@ -9,7 +9,7 @@
   .invoice-template {
     transition: transform 0.5s;
     min-height: 0;
-    transform: rotate(0deg) scale(.6, .5) translateX(+10em);
+    transform: rotate(0deg) scale(.6, .5) translateX(10em);
   }
 }
 
@@ -82,7 +82,7 @@ Drop file
   }
 
   &:hover {
-    transition: transform 0.3s ease; /* Suaviza la transición */
+    transition: transform 0.3s ease;
   }
 }
 
