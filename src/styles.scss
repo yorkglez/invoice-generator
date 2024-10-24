@@ -25,6 +25,9 @@ body {
   align-items: center;
   padding: 12px 24px;
   text-align: center;
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
 .btn-primary {
