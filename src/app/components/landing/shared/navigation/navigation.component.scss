@@ -1,4 +1,5 @@
 .nav-top {
+  display: flex;
   height: 52px;
   transition: height 0.5s;
   overflow: hidden;
@@ -40,7 +41,7 @@
     .brand {
       width: 30px;
 
-      img {
+      .image {
         width: 100%;
       }
     }
@@ -103,11 +104,12 @@
   display: none;
 }
 
-.nav-top {
-  display: none;
-}
 
 @media only screen and (max-width: 1024px) {
+  .nav-top {
+    display: none;
+  }
+
   #nav-content {
     display: flex;
   }
