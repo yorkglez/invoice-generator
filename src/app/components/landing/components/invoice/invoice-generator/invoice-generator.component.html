@@ -81,7 +81,7 @@
               </div>
               <!--email-->
               <div>
-                <input class="" type="text" placeholder="Email Address" formControlName="email" required>
+                <input class="" type="email" placeholder="Email Address" formControlName="email" required>
               </div>
             </div>
             <!--          Clients form -->
@@ -97,12 +97,13 @@
                   <input type="text" placeholder="First Name*" formControlName="firstName" required>
                 </div>
                 <div class="w-6/12">
-                  <input type="text" placeholder="Last Name*" formControlName="firstName" required>
+                  <input type="text" placeholder="Last Name*" formControlName="lastName" required>
                 </div>
               </div>
               <!--address-->
               <div>
-                <input class="" type="text" placeholder="Client's Address" formControlName="companyAddress" required>
+                <input class="" type="text" placeholder="Client's Address"
+                       formControlName="companyAddress" required>
               </div>
               <!--          city-->
               <div>
@@ -114,7 +115,8 @@
               </div>
               <!--email-->
               <div>
-                <input class="" type="text" placeholder="Client's Email" formControlName="email" required>
+                <input class="" type="email" placeholder="Client's Email"
+                       formControlName="email" required>
               </div>
             </div>
           </div>
@@ -139,13 +141,13 @@
 
             </div>
             <!--error list -->
-            <div class="error-list my-3" *ngIf="infoForm.dirty">
-              <ul>
-                <li *ngFor="let error of getAllErrors()">
-                  {{ error }}
-                </li>
-              </ul>
-            </div>
+            <!--            <div class="error-list my-3" *ngIf="infoForm.dirty">-->
+            <!--              <ul>-->
+            <!--                <li *ngFor="let error of getAllErrors()">-->
+            <!--                  {{ error }}-->
+            <!--                </li>-->
+            <!--              </ul>-->
+            <!--            </div>-->
 
             <!--  Totals       -->
             <div class="flex flex-col justify-end items-end -bottom-4 sm:text-sm" formGroupName="invoiceInfo">

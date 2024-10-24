@@ -1,6 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {JsonPipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import {ColorTwitterModule} from 'ngx-color/twitter';
 import {jsPDF} from 'jspdf';
 
@@ -13,7 +13,8 @@ import {jsPDF} from 'jspdf';
     FormsModule,
     NgIf,
     NgClass,
-    ColorTwitterModule
+    ColorTwitterModule,
+    JsonPipe
   ],
   templateUrl: './invoice-generator.component.html',
   styleUrl: './invoice-generator.component.scss'
@@ -67,7 +68,7 @@ export class InvoiceGeneratorComponent {
       city: ['', Validators.required],
       country: ['', Validators.required],
       phone: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
+      email: ['', Validators.required],
       clientInfo: new FormBuilder().group({
         company: ['', Validators.required],
         firstName: ['', Validators.required],
@@ -238,6 +239,8 @@ export class InvoiceGeneratorComponent {
    */
   public resetForm() {
     this.infoForm.reset();
+    this.tax = 0;
+    this.discount = 0;
     this.itemsList = [
       {
         id: '01',
@@ -270,14 +273,15 @@ export class InvoiceGeneratorComponent {
    * Toggle the configuration
    */
   showDownloadMode() {
-    if (this.infoForm.valid) {
-      this.downloadMode = true
-    } else {
-      this.invalidForm = true;
-      setTimeout(() => {
-        this.invalidForm = false;
-      }, 4000);
-    }
+    this.downloadMode = true
+    // if (this.infoForm.valid) {
+    //   this.downloadMode = true
+    // } else {
+    //   this.invalidForm = true;
+    //   setTimeout(() => {
+    //     this.invalidForm = false;
+    //   }, 4000);
+    // }
   }
 
   /**
