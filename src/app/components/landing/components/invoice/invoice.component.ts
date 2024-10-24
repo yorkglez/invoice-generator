@@ -6,6 +6,7 @@ import {InvoiceGeneratorComponent} from './invoice-generator/invoice-generator.c
 import {ManageInvoiceComponent} from './manage-invoice/manage-invoice.component';
 import {ApiService} from '../../../../common/services/api.service';
 import {SectionCardModel} from '../../../../models/section-card.model';
+import {InvoiceHeadComponent} from './invoice-head/invoice-head.component';
 
 @Component({
   selector: 'app-invoice',
@@ -16,6 +17,7 @@ import {SectionCardModel} from '../../../../models/section-card.model';
     InvoiceFaqComponent,
     InvoiceGeneratorComponent,
     ManageInvoiceComponent,
+    InvoiceHeadComponent,
   ],
   templateUrl: './invoice.component.html',
   styleUrl: './invoice.component.scss'
@@ -31,7 +33,6 @@ export class InvoiceComponent {
 
   ngOnInit() {
     this.apiService.get('sections').subscribe((response) => {
-      console.log(response[0]);
       this.sectionInfo = new SectionCardModel(response[0]);
       this.sectionHowToUse = new SectionCardModel(response[1]);
       this.customInvoice = new SectionCardModel(response[2]);
