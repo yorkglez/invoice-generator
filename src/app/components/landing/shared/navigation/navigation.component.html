@@ -1,7 +1,7 @@
-<div class="  w-full z-40">
+<div id="nav-content" class="  w-full z-40">
   <!--  top navigation-->
-  <div class="bg-white w-full flex justify-between">
-    <div class="h-full w-5/12">
+  <div class="nav-top bg-white w-full flex justify-between">
+    <div class="w-5/12">
       <ul class="flex h-full font-semibold gap-5">
         <div class="nav-item h-full hover:cursor-pointer py-4">
           <div class="h-full px-4 flex items-center text-sm">
@@ -56,16 +56,18 @@
     </div>
   </div>
 
-  <!--  down navigation-->
-  <div class="navigation flex items-center justify-center" [ngClass]="{'scroll-top': !scrollTop}">
-    <!--  logo-->
-    <div class="brand mr-11" [ngClass]="{'brand-small' : !scrollTop}">
-      <img [src]="scrollTop ? '/images/logos/hubspot.svg' : '/images/logos/short-logo.svg'" alt="">
-    </div>
-    <nav class="h-full w-5/12">
-      <ul class="flex h-full gap-5">
+  <!--  bottom navigation-->
+  <div class="nav-bottom shadow w-full navigation flex items-center justify-evenly">
+    <!--    nav-->
+    <nav class=" h-full lg:w-5/12 flex items-center">
+      <!--  logo-->
+      <div id="brand-image" class="brand">
+        <img [src]="brandImage" alt="">
+      </div>
+
+      <ul class="nav-items flex justify-evenly h-full gap-5">
         <div *ngFor="let item of navItems" class="h-full nav-item hover:cursor-pointer">
-          <div class="h-full px-4 flex items-center">
+          <div class="h-full  flex items-center">
             <span>{{ item.name }} <i class="fas fa-chevron-down text-lg ml-2"></i></span>
           </div>
         </div>
@@ -78,5 +80,4 @@
       </button>
     </div>
   </div>
-
 </div>

@@ -1,18 +1,49 @@
-.navigation {
+.nav-top {
+  height: 52px;
+  transition: height 0.5s;
+  overflow: hidden;
+}
+
+.nav-bottom {
   height: 76px;
   width: 100%;
   background: #fff;
-  position: fixed;
   z-index: 999;
+  transition: top 0.5s ease;
+
+  .nav-items {
+    margin-left: 44px;
+    transition: .3s ease-in-out;
+  }
+}
+
+.scrolled {
+  .nav-top {
+    height: 0;
+  }
+
+  .nav-bottom {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+
+    .nav-items {
+      margin-left: 16px;
+      transition: .3s ease-in-out;
+    }
+
+    .brand {
+      width: 30px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .brand {
   width: 100px;
-}
-
-.brand-small {
-  width: 50px;
-  margin-right: 2px;
 }
 
 .nav-item {

@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 
 @Component({
@@ -31,11 +31,17 @@ export class NavigationComponent {
       url: '/contact'
     }
   ];
-  protected scrollTop: boolean = true;
+  protected brandImage: string = '/images/logos/hubspot.svg';
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-    this.scrollTop = scrollPosition <= 100;
+    const nav = document.getElementById('nav-content') as HTMLElement;
+    if (window.scrollY > 0) {
+      nav.classList.add('scrolled');
+      this.brandImage = '/images/logos/short-logo.svg';
+    } else {
+      nav.classList.remove('scrolled');
+      this.brandImage = '/images/logos/hubspot.svg';
+    }
   }
 }
