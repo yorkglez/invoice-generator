@@ -67,7 +67,7 @@
           <img [src]="brandImage" alt="">
         </div>
         <button class="lg:hidden xl:hidden" (click)="toggleNav()">
-          click me
+          <i class="fas text-4xl" [ngClass]="{ 'fa-bars': !openNav, 'fa-times': openNav }"></i>
         </button>
       </div>
       <!--      search mobile-->
